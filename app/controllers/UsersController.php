@@ -7,6 +7,11 @@ class UsersController extends BaseController {
     $this->beforeFilter('admin');
   }
 
+  public function index(){
+    $users = User::getUserExceptAdmin()->get();
+    $this->layout->content = View::make('users.index')->with('users', $users);
+  }
+
   public function getRegister() {
     $this->layout->content = View::make('users.register');
   }
@@ -21,7 +26,7 @@ class UsersController extends BaseController {
       $user->last_name = Input::get('last_name');
       $user->email = Input::get('email');
       $user->password = Hash::make(Input::get('password'));
-      // $user->save();
+      $user->save();
  
       return Redirect::to('users/login')->with('message', 'Thanks for registering!'); 
     } else {

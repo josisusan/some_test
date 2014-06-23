@@ -46,4 +46,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
       return 'remember_token';
   }
 
+  public static function getUserExceptAdmin(){
+    return User::where('admin', '=', 0);
+  }
+
 }
