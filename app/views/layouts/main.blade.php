@@ -14,8 +14,13 @@
       <div class="container">
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">  
-            <li>{{ HTML::link('users/register', 'Register') }}</li>   
-            <li>{{ HTML::link('users/login', 'Login') }}</li>   
+            <li>{{ HTML::link('users/register', 'Register') }}</li>
+            @if(Auth::check())
+              <li>{{ HTML::link('users/logout', 'LogOut') }}</li>
+            @else
+              <li>{{ HTML::link('users/login', 'Login') }}</li>
+            @endif   
+               
           </ul>
         </div>
       </div>

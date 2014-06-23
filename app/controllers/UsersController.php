@@ -4,6 +4,7 @@ class UsersController extends BaseController {
 
   public function __construct(){
     $this->beforeFilter('csrf', array('on'=>'post'));
+    $this->beforeFilter('admin');
   }
 
   public function getRegister() {
@@ -30,7 +31,4 @@ class UsersController extends BaseController {
     }
   }
 
-  public function getLogin() {
-    $this->layout->content = View::make('users.login');
-  }
 }
