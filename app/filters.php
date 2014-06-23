@@ -72,7 +72,7 @@ Route::filter('guest', function()
 
 Route::filter('admin', function()
 {
-	if (!Auth::user()) return Redirect::to('/');
+	if (!Auth::user() || Auth::user()->admin != 1) return Redirect::to('/');
 });
 
 /*
